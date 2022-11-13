@@ -28,7 +28,7 @@ public class Sabor {
 
     @Override
     public String toString() {
-        return "Sabor"+ Sabor +"\nID = " + ID ;
+        return Sabor +"\nID = " + ID ;
     }
     
 }

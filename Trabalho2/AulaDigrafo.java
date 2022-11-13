@@ -11,20 +11,34 @@ public class AulaDigrafo {
         String arquivo = "Trabalho2/casoleonardo10.txt";
         BufferedReader BR = new BufferedReader(new FileReader(arquivo));
 
-        ArrayList<Sabor> sabor = new ArrayList<>();
+        ArrayList<Sabor> ListaSabor = new ArrayList<>();
+        
 
         String linha = "";
+        int idAtual = 0;
         
         
+        while(linha != null){
 
-        while((linha = BR.readLine()) != null){
-            String[] leitura = linha.split(" -> ");
-            BR.readLine();
+            String[] leitura = linha.split(";");
+
+
+
+            System.out.println(leitura[0]);
+            
+            for(int i = 0; i < leitura.length;i++){
+                if (!ListaSabor.contains(leitura[i])){
+                    
+                    Sabor sabor = new Sabor(leitura[i], idAtual);
+                    ListaSabor.add(sabor);
+                    idAtual++;
+                }
+            }
+            linha = BR.readLine();
         }
 
-        for(int i = 0; i < sabor.size(); i++){
-            System.out.print(sabor.get(i));
-
+        for(int i = 0; i < ListaSabor.size(); i++){
+            System.out.println("\n"+ListaSabor.get(i));
         }
     }
 }

@@ -1,6 +1,6 @@
 package Trabalho2;
 
-public class AulaDigrafo {
+public class App {
     public static void main(String args[]){
 
         Digraph DG = new Digraph(3);
