@@ -1,17 +1,44 @@
 package Trabalho2;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class App {
-    public static void main(String args[]){
+    public static void main(String args[]) throws IOException{
 
-        Digraph DG = new Digraph(3);
+        String arquivo = "Trabalho2/casoleonardo10.txt";
+        BufferedReader BR = new BufferedReader(new FileReader(arquivo));
 
-        DG.addEdge(0, 1);
-        DG.addEdge(1, 0);
-        DG.addEdge(1, 2);
-        DG.addEdge(2, 0);
+        ArrayList<Sabor> ListaSabor = new ArrayList<>();
+        
 
-        System.out.println(DG.toDot());
+        String linha = "";
+        int idAtual = 0;
+        
+        
+        while(linha != null){
 
-        DigrafoBuscaProfundidade dfs1 = new DigrafoBuscaProfundidade(DG, 0);
+            String[] leitura = linha.split(";");
+
+
+
+            System.out.println(leitura[0]);
+            
+            for(int i = 0; i < leitura.length;i++){
+                if (!ListaSabor.contains(leitura[i])){
+                    
+                    Sabor sabor = new Sabor(leitura[i], idAtual);
+                    ListaSabor.add(sabor);
+                    idAtual++;
+                }
+            }
+            linha = BR.readLine();
+        }
+
+        for(int i = 0; i < ListaSabor.size(); i++){
+            System.out.println("\n"+ListaSabor.get(i));
+        }
     }
 }

@@ -1,44 +1,24 @@
 package Trabalho2;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class AulaDigrafo {
-    public static void main(String args[]) throws IOException{
+    public static void main(String args[]){
 
-        String arquivo = "Trabalho2/casoleonardo10.txt";
-        BufferedReader BR = new BufferedReader(new FileReader(arquivo));
+        Digraph DG = new Digraph(10);
 
-        ArrayList<Sabor> ListaSabor = new ArrayList<>();
-        
+        DG.addEdge(0, 1);
+        DG.addEdge(0, 2);
+        DG.addEdge(0, 3);
+        DG.addEdge(3, 9);
+        DG.addEdge(8, 9);
+        DG.addEdge(4, 5);
+        DG.addEdge(4, 6);
+        DG.addEdge(4, 7);
+        DG.addEdge(5, 6);
+        DG.addEdge(7, 1);
+        DG.addEdge(7, 2);
 
-        String linha = "";
-        int idAtual = 0;
-        
-        
-        while(linha != null){
+        System.out.println(DG.toDot());
 
-            String[] leitura = linha.split(";");
-
-
-
-            System.out.println(leitura[0]);
-            
-            for(int i = 0; i < leitura.length;i++){
-                if (!ListaSabor.contains(leitura[i])){
-                    
-                    Sabor sabor = new Sabor(leitura[i], idAtual);
-                    ListaSabor.add(sabor);
-                    idAtual++;
-                }
-            }
-            linha = BR.readLine();
-        }
-
-        for(int i = 0; i < ListaSabor.size(); i++){
-            System.out.println("\n"+ListaSabor.get(i));
-        }
+        DigrafoBuscaProfundidade dfs1 = new DigrafoBuscaProfundidade(DG, 0);
     }
 }
